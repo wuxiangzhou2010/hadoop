@@ -88,13 +88,16 @@ void Ergodic(char * path, hdfsFS fs)
     temp   = strrchr(path, ':');
     Length = strlen(PORT) + 1;
 
-    while (Length--) temp++;
+    while (Length--)
+        temp++;
     Length = strlen(hdfs_path);
 
-    while (Length--) temp++;
+    while (Length--)
+        temp++;
     strcpy(directory, dec_file);
 
-    if (strlen(temp)) strcat(directory, temp);
+    if (strlen(temp))
+        strcat(directory, temp);
 
     if (pt_hdfs_file_info->mKind == 'F') {
         // hdfsFS fs = hdfsConnect(IP,port);
@@ -110,9 +113,11 @@ void Ergodic(char * path, hdfsFS fs)
             if ((SizeBoundaries + pt_hdfs_file_info->mSize / 1000 / 1000 > PER_LEN) ||
               (NumBoundaries >= 500))
             {
-                for (int i = 0; i < 2; i++) pthread_join(t[i], NULL);
+                for (int i = 0; i < 2; i++)
+                    pthread_join(t[i], NULL);
                 MakeTorrent make;
-                make.make(Name, "udp://tracker.bitcomet.net:8080/announce");
+                const char * tracker = "udp://tracker.bitcomet.net:8080/announce";
+                make.make(Name, tracker);
                 Record[0]      = '\0';
                 SizeBoundaries = 0;
                 NumBoundaries  = 0;
@@ -134,7 +139,7 @@ void Ergodic(char * path, hdfsFS fs)
                     if (pthread_kill(t[0], 0) == ESRCH) {
                         pthread_create(&t[0], NULL, &DownloadPthread::down, (void *) (Data));
                         flag1 = false;
-                    } else if (!pthread_kill(t[1], 0) == ESRCH) {
+                    } else if (!(pthread_kill(t[1], 0) == ESRCH)) {
                         pthread_create(&t[1], NULL, &DownloadPthread::down, (void *) (Data));
                         flag1 = false;
                     }
@@ -245,7 +250,8 @@ int main(int argc, char ** argv)
         for (int i = 0; i < 2; i++) pthread_join(t[i], NULL);
         fs = hdfsConnect(IP, port);
         MakeTorrent make;
-        make.make(Name, "udp://tracker.bitcomet.net:8080/announce");
+        const char * tracker = "udp://tracker.bitcomet.net:8080/announce";
+        make.make(Name, tracker);
         hdfsDisconnect(fs);
     }
     char * End = new char[5];
@@ -253,8 +259,8 @@ int main(int argc, char ** argv)
     ModifyXML ModifyXML;
     ModifyXML.ModXml(End);
     te = time(NULL);
-    printf("%d_默认开启上传两小时...\n", te - ts);
-    delete[] IP, PORT, hdfs_path, dec_file, Record, Name, End;
+    printf("%ld_默认开启上传两小时...\n", te - ts);
+    delete[] IP /*,PORT, hdfs_path, dec_file, Record, Name , End*/;
 
     /*ts=time(NULL);te=time(NULL);
      * while(te-ts<=10800)

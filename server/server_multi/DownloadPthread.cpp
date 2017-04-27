@@ -5,7 +5,7 @@
 #include <assert.h>
 #include <sys/stat.h>
 #include <sys/types.h>
-
+#include <cstdlib>
 
 struct data {
     char directory[200], readPath[200], IP[50];
@@ -143,6 +143,6 @@ void * DownloadPthread::down(void * args)
     }
 
     hdfsCloseFile(fs, readFile);
-    delete[] recv_buff, name;
+    delete[] recv_buff/*, name*/;
     return 0;
 } // DownloadPthread::down

@@ -11,8 +11,8 @@
 
 class MakeTorrent {
 public:
-    static int make(char * path, char * outFile, char * readPath, char * track);
-    static int make(char * readPath, char * track);
+    static int make(char * path, char * outFile, char * readPath, const char *track);
+    static int make(char * readPath, const char * track);
 private:
     static void print_progress(int i, int num);
     static bool file_filter1(std::string const& f);

@@ -6,7 +6,7 @@
 #include <assert.h>
 #include <sys/stat.h>
 #include <sys/types.h>
-
+#include <cstdlib>
 
 Download::Download(char * IP, int Port, int PER_LEN)
 {

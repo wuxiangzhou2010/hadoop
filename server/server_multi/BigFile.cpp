@@ -106,8 +106,10 @@ int BigFile::write_slice(int slice_num, char * value, int len, char * path, char
     ret = fwrite(value, 1, len, m_file);
 
     // 单个文件是否分块作种
-    if (flag)
-        MakeTorrent::make(path, torrentPath, readPath, "udp://tracker.bitcomet.net:8080/announce");
+    const char * tracker = "udp://tracker.bitcomet.net:8080/announce";
+    if (flag) {
+        MakeTorrent::make(path, torrentPath, readPath, tracker);
+    }
 
     // delete[] value,path,readPath;
     return ret;
