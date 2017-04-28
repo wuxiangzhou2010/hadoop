@@ -1,4 +1,4 @@
-project(serverMulti)
+project(sample)
 cmake_minimum_required(VERSION 2.6)
 # set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake/")
 
@@ -33,26 +33,19 @@ include_directories(${JAVA_HOME} ${HADOOP_HEADER} ${TORRENT_HEADER} ${BOOST_ROOT
 # add_definitions(${LibtorrentRasterbar_DEFINITIONS})
 
 set(src_list
-    arithmetic.cpp
-    BigFile.cpp
-    BigFile.h
-    CMakeLists.txt
-    Download.cpp
-    Download.h
-    DownloadPthread.cpp
-    DownloadPthread.h
-    makeTorrent.cpp
-    makeTorrent.h
-    ModifyXML.cpp
-    ModifyXML.h
-    QueryXML.cpp
-    QueryXML.h
-    ThreadPool.cpp
-    ThreadPool.h
-    UpServer.cpp
-    UpServer.h
-    UpTorrentToTrack.cpp
-    UpTorrentToTrack.h)
+     BigFile.cpp
+     BigFile.h
+     # makeTorrent.h
+     # cat.cpp
+     Download.cpp
+     # Download.h
+     # DownTorrent.cpp
+     dump_torrent.cpp
+     # dump_torrent.h
+     main.cpp
+     UpServer.cpp
+     # UpServer.h
+     )
 
 set(link_flag 
     pthread
@@ -66,6 +59,8 @@ set(link_flag
 # target_link_libraries(${example} ${LibtorrentRasterbar_LIBRARIES} ${Boost_LIBRARIES})
 # endforeach(example)
 
-add_executable(serverMulti ${src_list})
+add_executable(sample ${src_list})
+add_executable(cat2 cat.cpp)
+add_executable(downTorrent DownTorrent.cpp)
 
-target_link_libraries(serverMulti ${link_flag})
+target_link_libraries(sample ${link_flag})
