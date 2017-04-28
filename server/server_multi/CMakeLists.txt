@@ -15,16 +15,16 @@ cmake_minimum_required(VERSION 2.6)
 # endif ()
 # set(ENV{PKG_CONFIG_PATH} "${PKG_CONFIG_CHANGED_PATH}")
 
-set(XML_ROOT /home/test/old_vm/libxml2-2.9.4)
-set(XML_HEADER ${XML_ROOT}/include)
-set(TORRENT_ROOT  /home/test/old_vm/libtorrent-rasterbar-1.1.3)
-set(TORRENT_HEADER ${TORRENT_ROOT}/include)
-set(HADOOP_ROOT /home/test/old_vm/hh)
+# set(XML_ROOT /home/test/old_vm/libxml2-2.9.4)
+# set(XML_HEADER ${XML_ROOT}/include)
+# set(TORRENT_ROOT  /home/test/old_vm/libtorrent-rasterbar-1.1.3)
+# set(TORRENT_HEADER ${TORRENT_ROOT}/include)
+set(HADOOP_ROOT /home/zz/hadoop)
 set(HADOOP_HEADER ${HADOOP_ROOT}/include)
 set(HADOOP_LIB ${HADOOP_ROOT}/lib/native)
-set(BOOST_ROOT /home/test/old_vm/boost_1_64_0)
-set(BOOST_LIB ${BOOST_ROOT}/stage/lib)
-set(JAVA_HOME /home/test/old_vm/jdk1.8.0_131)
+# set(BOOST_ROOT /home/test/old_vm/boost_1_64_0)
+# set(BOOST_LIB ${BOOST_ROOT}/stage/lib)
+set(JAVA_HOME /home/zz/jdk1.8.0_131)
 set(JVM_HOME ${JAVA_HOME}/jre/lib/amd64/server)
 # find_package(LibtorrentRasterbar REQUIRED)
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -58,7 +58,9 @@ set(link_flag
     pthread
     xml2
     hdfs
-    jvm)
+    jvm
+    torrent-rasterbar
+    boost_system)
 # foreach(example ${single_file_examples})
 # add_executable(${example} "${example}.cpp")
 # target_link_libraries(${example} ${LibtorrentRasterbar_LIBRARIES} ${Boost_LIBRARIES})
